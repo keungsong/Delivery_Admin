@@ -62,13 +62,16 @@ class _LoginScreenState extends State<LoginScreen> {
       });
     }
 
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          title: Text('ລະບົບຈັດການລະບົບຂົນສົ່ງ'),
-          centerTitle: true,
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/background.jpg'),
+                  fit: BoxFit.cover)),
         ),
-        body: FutureBuilder(
+        Scaffold(
+            body: FutureBuilder(
           // Initialize FlutterFire:
           future: _initialization,
           builder: (context, snapshot) {
@@ -109,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(
-                                      height: 10,
+                                      height: 20,
                                     ),
                                     TextFormField(
                                       controller: _usernameTextController,
@@ -207,7 +210,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CircularProgressIndicator(),
             );
           },
-        ));
+        ))
+      ],
+    );
   }
 
   Future<void> _showMyDialog({title, message}) async {
